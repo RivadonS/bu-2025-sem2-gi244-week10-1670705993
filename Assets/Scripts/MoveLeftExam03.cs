@@ -1,16 +1,16 @@
 using UnityEngine;
 
-public class MoveLeft : MonoBehaviour
+public class MoveLeftExam03 : MonoBehaviour
 {
     public float speed = 10f;
 
     private float leftBound = -15;
 
-    private PlayerController playerController;
+    private PlayerControllerExam03 playerController;
 
     void Start()
     {
-        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        playerController = GameObject.Find("Player").GetComponent<PlayerControllerExam03>();
     }
 
     // Update is called once per frame
