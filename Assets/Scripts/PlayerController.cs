@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
 
     public bool isDashing = false;
 
+    public int hp = 3;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -82,13 +84,24 @@ public class PlayerController : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Obstacle"))
         {
-            Debug.Log("Game Over!");
-            gameOver = true;
-            playerAnim.SetBool("Death_b", true);
-            playerAnim.SetInteger("DeathType_int", 1);
+            if (gameOver) return;
+
+            hp--;
+            Debug.Log("Player HP: " + hp);
+
             explosionParticle.Play();
-            dirtParticle.Stop();
-            playerAudio.PlayOneShot(crashSfx);
+
+            Destroy(collision.gameObject);
+
+            if (hp <= 0)
+            {
+                Debug.Log("Game Over!");
+                gameOver = true;
+                playerAnim.SetBool("Death_b", true);
+                playerAnim.SetInteger("DeathType_int", 1);
+                dirtParticle.Stop();
+                playerAudio.PlayOneShot(crashSfx);
+            }
         }
     }
 }

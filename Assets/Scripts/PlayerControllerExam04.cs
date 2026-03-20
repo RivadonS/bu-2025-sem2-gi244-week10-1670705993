@@ -90,12 +90,17 @@ public class PlayerControllerExam04 : MonoBehaviour
 
             explosionParticle.Play();
 
-            Debug.Log("Game Over!");
-            gameOver = true;
-            playerAnim.SetBool("Death_b", true);
-            playerAnim.SetInteger("DeathType_int", 1);
-            dirtParticle.Stop();
-            playerAudio.PlayOneShot(crashSfx);
+            Destroy(collision.gameObject);
+
+            if(hp <= 0)
+            {
+                Debug.Log("Game Over!");
+                gameOver = true;
+                playerAnim.SetBool("Death_b", true);
+                playerAnim.SetInteger("DeathType_int", 1);
+                dirtParticle.Stop();
+                playerAudio.PlayOneShot(crashSfx);
+            }
         }
     }
 }
