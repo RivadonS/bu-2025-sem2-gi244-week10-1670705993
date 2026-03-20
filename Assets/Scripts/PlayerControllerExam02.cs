@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerControllerExam02 : MonoBehaviour
 {
     public float jumpForce;
     public float gravityModifier;
@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
     {
         if (jumpAction.triggered && !gameOver)
         {
-            if (isOnGround)
+            if(isOnGround)
             {
                 rb.AddForce(jumpForce * Vector3.up, ForceMode.Impulse);
                 isOnGround = false;
@@ -53,8 +53,7 @@ public class PlayerController : MonoBehaviour
                 playerAnim.SetTrigger("Jump_trig");
                 dirtParticle.Stop();
                 playerAudio.PlayOneShot(jumpSfx);
-            }
-            else if (canDoubleJump)
+            } else if (canDoubleJump)
             {
                 rb.AddForce(jumpForce * Vector3.up, ForceMode.Impulse);
                 canDoubleJump = false;
@@ -62,7 +61,7 @@ public class PlayerController : MonoBehaviour
                 playerAnim.SetTrigger("Jump_trig");
                 playerAudio.PlayOneShot(jumpSfx);
             }
-
+            
         }
     }
 
